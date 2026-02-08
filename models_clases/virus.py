@@ -1,14 +1,14 @@
 
-class Virus ():
-    def __init__ (self, nombre, tasa_letalidad, tiempo_recuperacion, tipo_transmision):
+class Virus():
+    def __init__ (self, nombre, tipo_transmision, tasa_letalidad, tiempo_recuperacion):
         self.nombre = nombre
         self.tipo_transmision = tipo_transmision
         self.tasa_letalidad = tasa_letalidad
         self.tiempo_recuperacion = tiempo_recuperacion
         
         probabilidades = {
-            "Aérea": 0.80,
-            "Respiratoria": 0.30,
+            "Aéreo": 0.80,
+            "Respiratorio": 0.30,
             "Contacto Directo": 0.12, 
             "Fómites": 0.10
         }

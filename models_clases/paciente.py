@@ -1,3 +1,4 @@
+
 class Paciente():
     def __init__(self, id_paciente, estado="Sano"):
         self.id = id_paciente
@@ -7,7 +8,10 @@ class Paciente():
         self.en_hospital = False
         self.dia_ingreso_cola = None
         self.dia_atencion = None
-        
 
+    def infectar(self, dia):
+        if self.estado == "Sano":
+            self.estado = "Infectado"
+            self.dia_contagio = dia
 
 

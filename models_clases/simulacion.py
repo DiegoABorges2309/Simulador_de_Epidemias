@@ -6,4 +6,4 @@ class Simulacion():
         self.area_km2 = area_km2
         self.capacidad_hospitalaria = capacidad_hospitalaria
         self.id_simulacion = None
-        
+

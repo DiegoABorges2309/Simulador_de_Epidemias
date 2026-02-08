@@ -2,7 +2,7 @@
 from models_clases.virus import Virus
 from models_clases.simulacion import Simulacion
 import sqlite3
-#we
+
 class DataBase():
     def __init__(self, nombre_db = "Simulador.db"):
         self.conexion = sqlite3.connect(nombre_db)
