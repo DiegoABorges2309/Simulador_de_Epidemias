@@ -1,0 +1,35 @@
+<RCC>
+    <qresource>
+        <file>qtquickcontrols2.conf</file>
+        <file>SimCore_Designs.qmlproject</file>
+        <file>SimCore_Designs/Constants.qml</file>
+        <file>SimCore_Designs/EventListModel.qml</file>
+        <file>SimCore_Designs/EventListSimulator.qml</file>
+        <file>SimCore_Designs/qmldir</file>
+        <file>SimCore_DesignsContent/App.qml</file>
+        <file>SimCore_DesignsContent/fonts/GoogleSans-Italic-VariableFont_GRAD,opsz,wght.ttf</file>
+        <file>SimCore_DesignsContent/fonts/GoogleSans-VariableFont_GRAD,opsz,wght.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans-Bold.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans-BoldItalic.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans-Italic.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans-Medium.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans-MediumItalic.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans-Regular.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans-SemiBold.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans-SemiBoldItalic.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans_17pt-Bold.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans_17pt-BoldItalic.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans_17pt-Italic.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans_17pt-Medium.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans_17pt-MediumItalic.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans_17pt-Regular.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans_17pt-SemiBold.ttf</file>
+        <file>SimCore_DesignsContent/fonts/static/GoogleSans_17pt-SemiBoldItalic.ttf</file>
+        <file>SimCore_DesignsContent/images/background_biohazard.png</file>
+        <file>SimCore_DesignsContent/images/background_biohazard_2.png</file>
+        <file>SimCore_DesignsContent/images/background_biohazard_logo.png</file>
+        <file>SimCore_DesignsContent/images/nodo_background.png</file>
+        <file>SimCore_DesignsContent/images/play.png</file>
+        <file>SimCore_DesignsContent/Screen01.ui.qml</file>
+    </qresource>
+</RCC>
