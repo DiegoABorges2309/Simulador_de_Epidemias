@@ -50,6 +50,7 @@ Rectangle {
             y: 655
             width: 65
             height: 65
+            opacity: 0.75
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 0
             icon.height: 60
@@ -61,18 +62,62 @@ Rectangle {
             highlighted: false
             flat: true
         }
+
+        Button {
+            id: button1
+            y: 175
+            width: 60
+            height: 60
+            text: qsTr("Button")
+            icon.color: "#5bcbcfde"
+            // background: Rectangle {
+            //     color: '#2e3239'
+            //     opacity: 0.25
+            // }
+            icon.height: 80
+            icon.width: 80
+            icon.source: "images/add.png"
+            flat: true
+            display: AbstractButton.IconOnly
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+
+        Button {
+            id: button3
+            x: 610
+            y: 235
+            width: 60
+            height: 60
+            text: qsTr("Button")
+            icon.width: 80
+            icon.source: "images/history.png"
+            icon.height: 80
+            icon.color: "#5bcbcfde"
+            flat: true
+            display: AbstractButton.IconOnly
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
     }
 
     Rectangle {
-        x: -350
+        x: -346
+        y: 0
         width: 300
-        height: 563
+        height: 646
         color: bg_color_base
         radius: 18
-        anchors.verticalCenter: parent.verticalCenter
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 77
-        anchors.verticalCenterOffset: 2
+        anchors.bottomMargin: 74
+
+        Text {
+            id: text4
+            x: 15
+            y: 25
+            color: "#eaeaea"
+            text: qsTr("Crear Simulacion:")
+            font.pixelSize: 22
+            font.family: "Google Sans"
+        }
     }
 
     Rectangle {
@@ -84,9 +129,37 @@ Rectangle {
         anchors.right: parent.right
         anchors.rightMargin: 0
         anchors.verticalCenterOffset: 2
+
+        Rectangle {
+            id: rectangle5
+            color: "#181a1e"
+            radius: 18
+            border.color: "#a4363943"
+            border.width: 2
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.leftMargin: 20
+            anchors.rightMargin: 20
+            anchors.topMargin: 40
+            anchors.bottomMargin: 45
+
+            Text {
+                id: text3
+                color: "#cbcfde"
+                text: qsTr("Sin datos activos")
+                font.pixelSize: 16
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                anchors.centerIn: parent
+                font.family: "Google Sans"
+            }
+        }
     }
 
     Rectangle {
+        // #81363943
         id: rectangle
         color: "#121316"
         radius: 18
@@ -112,6 +185,42 @@ Rectangle {
 
         Text {
             id: text1
+            color: color_text
+            text: qsTr("Esperando datos epidemiológicos")
+            font.pixelSize: 16
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font.styleName: "Regular"
+            font.family: "Google Sans"
+            anchors.centerIn: parent
+        }
+    }
+
+    Rectangle {
+        id: rectangle3
+        color: "#121316"
+        radius: 18
+        border.color: "#81363943"
+        border.width: 2
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.leftMargin: 99
+        anchors.rightMargin: 304
+        anchors.topMargin: 35
+        anchors.bottomMargin: 35
+        Image {
+            id: image1
+            width: 500
+            opacity: 0.35
+            source: "images/background_biohazard.png"
+            fillMode: Image.PreserveAspectCrop
+            anchors.centerIn: parent
+        }
+
+        Text {
+            id: text2
             color: color_text
             text: qsTr("Esperando datos epidemiológicos")
             font.pixelSize: 16

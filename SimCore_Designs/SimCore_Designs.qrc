@@ -25,9 +25,11 @@
         <file>SimCore_DesignsContent/fonts/static/GoogleSans_17pt-Regular.ttf</file>
         <file>SimCore_DesignsContent/fonts/static/GoogleSans_17pt-SemiBold.ttf</file>
         <file>SimCore_DesignsContent/fonts/static/GoogleSans_17pt-SemiBoldItalic.ttf</file>
+        <file>SimCore_DesignsContent/images/add.png</file>
         <file>SimCore_DesignsContent/images/background_biohazard.png</file>
         <file>SimCore_DesignsContent/images/background_biohazard_2.png</file>
         <file>SimCore_DesignsContent/images/background_biohazard_logo.png</file>
+        <file>SimCore_DesignsContent/images/history.png</file>
         <file>SimCore_DesignsContent/images/nodo_background.png</file>
         <file>SimCore_DesignsContent/images/play.png</file>
         <file>SimCore_DesignsContent/Screen01.ui.qml</file>
