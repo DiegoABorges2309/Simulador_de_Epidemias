@@ -100,23 +100,133 @@ Rectangle {
     }
 
     Rectangle {
-        x: -346
-        y: 0
+        x: 85
         width: 300
-        height: 646
         color: bg_color_base
         radius: 18
+        anchors.top: parent.top
         anchors.bottom: parent.bottom
+        anchors.topMargin: 26
         anchors.bottomMargin: 74
+        z: 2
 
         Text {
             id: text4
-            x: 15
+            x: 22
             y: 25
-            color: "#eaeaea"
-            text: qsTr("Crear Simulacion:")
+            width: 181
+            height: 27
+            color: color_text
+            text: qsTr("Crear Simulacion")
             font.pixelSize: 22
+            font.weight: Font.Bold
             font.family: "Google Sans"
+        }
+
+        Text {
+            id: text5
+            x: 22
+            y: 72
+            color: color_text
+            text: qsTr("Virus:")
+            font.pixelSize: 16
+            font.family: "Google Sans"
+        }
+
+        TextField {
+            id: textoNombre
+            x: 22
+            y: 103
+            persistentSelection: false
+            overwriteMode: false
+            readOnly: false
+            cursorVisible: false
+            font.family: "Google Sans"
+            font.pointSize: 13
+            width: 225
+            height: 37
+            color: color_text
+            placeholderTextColor: "#4dffffff"
+            placeholderText: "Nombre del Virus"
+            background: Rectangle {
+                color: bg_color_base
+                radius: 12
+                border.color: "#5bcbcfde"
+                border.width: 1
+            }
+        }
+
+        Text {
+            id: text6
+            x: 22
+            y: 162
+            color: color_text
+            text: "Tipo de Transmisión"
+            font.pixelSize: 16
+            font.family: "Google Sans"
+        }
+
+        ComboBox {
+            id: tipo_de_contagio
+            x: 22
+            y: 200
+            width: 225
+            height: 37
+            font.pointSize: 13
+            font.family: "Google Sans"
+            model: ["hola", "epa"]
+
+            background: Rectangle {
+                id: bg_rec
+                color: bg_color_base
+                radius: 12
+                border.color: "#5bcbcfde"
+                border.width: 1
+            }
+        }
+
+        Text {
+            id: text7
+            x: 22
+            y: 259
+            color: color_text
+            text: "Tasa de Letalidad"
+            font.pixelSize: 16
+            font.family: "Google Sans"
+        }
+
+        TextField {
+            id: tasaLetalidad
+            x: 22
+            y: 292
+            width: 83
+            height: 37
+            color: color_text
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignBottom
+            maximumLength: 5
+            readOnly: false
+            persistentSelection: false
+            overwriteMode: false
+            font.pointSize: 13
+            font.family: "Google Sans"
+            cursorVisible: false
+            background: Rectangle {
+                id: rectangle4
+                color: bg_color_base
+                radius: 12
+                border.color: "#5bcbcfde"
+                border.width: 1
+                Text {
+                    x: 59
+                    color: color_text
+                    text: "%"
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.pixelSize: 20
+                    anchors.verticalCenterOffset: 2
+                    font.family: "Google Sans"
+                }
+            }
         }
     }
 
@@ -135,7 +245,7 @@ Rectangle {
             color: "#181a1e"
             radius: 18
             border.color: "#a4363943"
-            border.width: 2
+            border.width: 1
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
@@ -144,17 +254,18 @@ Rectangle {
             anchors.rightMargin: 20
             anchors.topMargin: 40
             anchors.bottomMargin: 45
+        }
 
-            Text {
-                id: text3
-                color: "#cbcfde"
-                text: qsTr("Sin datos activos")
-                font.pixelSize: 16
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                anchors.centerIn: parent
-                font.family: "Google Sans"
-            }
+        Text {
+            id: text3
+            color: color_text
+            text: qsTr("Sin datos activos")
+            font.pixelSize: 16
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            anchors.centerIn: parent
+            font.family: "Google Sans"
+            x: 100
         }
     }
 
@@ -201,7 +312,7 @@ Rectangle {
         color: "#121316"
         radius: 18
         border.color: "#81363943"
-        border.width: 2
+        border.width: 1
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
