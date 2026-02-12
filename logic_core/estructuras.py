@@ -31,7 +31,45 @@ class ColaHospital():
     
     def tamano_cola(self):
         return len(self.cola_pacientes)
-    
-    
-    
 
+    
+class PilaHistorial():
+    def __init__(self):
+        self.historial_estados = []
+
+    def apilar_estado(self, dia, poblacion, infectados, recuperados, fallecidos, tipo_transmision, area):
+        estado = {
+            "dia": dia,
+            "poblacion_total": poblacion,
+            "infectados": infectados,
+            "recuperados": recuperados,
+            "fallecidos": fallecidos,
+            "tipo_transmision": tipo_transmision,
+            "area": area
+        }
+        self.historial_estados.append(estado)
+        print(f"[DEBUG] Estado del día {dia} guardado en la pila")
+
+    def deshacer_y_mostrar(self):
+        if self.esta_vacia():
+            print("(!) No hay estados anteriores para retroceder")
+            return None
+        
+        estado_restaurado = self.historial_estados.pop()
+        self._imprimir_resumen(estado_restaurado)
+        return estado_restaurado
+
+    def _imprimir_resumen(self, estado):
+        print("\n" + "="*50)
+        print(f"REBOBINANDO AL DÍA {estado['dia']}")
+        print("="*50)
+        print(f"Infectados: {estado['infectados']} | Fallecidos: {estado['fallecidos']}")
+        print("="*50 + "\n")
+        
+    def esta_vacia(self):
+        return len(self.historial_estados) == 0
+
+    def ver_tope(self):
+        if not self.esta_vacia():
+            return self.historial_estados[-1]
+        return None

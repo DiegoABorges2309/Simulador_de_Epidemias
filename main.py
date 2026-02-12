@@ -3,6 +3,8 @@ from data_base import DataBase
 from models_clases.virus import Virus
 from models_clases.simulacion import Simulacion
 from logic_core.motorSimulacion import MotorSimulacion
+from logic_core.estructuras import PilaHistorial
+
 
 def ejecutar_prueba():
 
