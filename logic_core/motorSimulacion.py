@@ -12,15 +12,16 @@ class MotorSimulacion:
         self.poblacion = [Paciente(id_paciente=i) for i in range(self.simulacion.poblacion_total)]
         self.cola_hospital = ColaHospital()
         self.densidad = self.simulacion.poblacion_total / self.simulacion.area_km2
+        self.resultados = [0,0,0,0,0,0,0]
+        self.estado = ["sanos", "infectados", "recuperados", "fallecidos", "espera"]
 
-        limites = {
+        self.limites = {
             "Aéreo": 2.5,
             "Respiratorio": 2.0,
             "Contacto Directo": 1.2,
             "Fómites": 1.5,
-         
         }        
-        tope = limites.get(self.virus.tipo_transmision, 1.5)
+        tope = self.limites.get(self.virus.tipo_transmision, 1.5)
         self.factor_densidad = min(tope, max(1.0, self.densidad / 50)) 
         self.id_simulacion = self.db.insertar_simulacion(self.virus, self.simulacion)
 
@@ -31,11 +32,20 @@ class MotorSimulacion:
         for p in iniciales:
             p.infectar(0)
 
-    def ejecutar_simulacion(self, limite_seguridad=500):
+    def mostrar_resultados(self):
+        for i in range(len(self.estado)):
+            print(f"{self.estado[i]}::{self.resultados[i]}")
+
+    def ejecutar_simulacion(self, limite_seguridad=None):
         self.iniciar_epidemia()
         dia = 0
-        while dia < limite_seguridad:
+        conteo = None
+        while True:
+            if conteo is not None:
+                for i in range(len(self.estado)):
+                    self.resultados[i] = +conteo[self.estado[i]]
             conteo = {"sanos": 0, "infectados": 0, "recuperados": 0, "fallecidos": 0, "espera": 0}
+
             infectados_activos = [p for p in self.poblacion if p.estado == "Infectado"]
             
             for p in infectados_activos:
@@ -75,7 +85,6 @@ class MotorSimulacion:
                     camas_libres -= 1
                 else:
                     self.cola_hospital.agregar_paciente(p, dia)
-
             for p in self.poblacion:
                 if p.estado == "Sano": conteo["sanos"] += 1
                 elif p.estado == "Infectado": conteo["infectados"] += 1
@@ -84,13 +93,17 @@ class MotorSimulacion:
             
             conteo["espera"] = self.cola_hospital.tamano_cola()
             conteo["numero_dia"] = dia
+            print(conteo["numero_dia"])
             self.db.insertar_dia(self.id_simulacion, conteo)
 
             if len([p for p in self.poblacion if p.estado == "Infectado"]) == 0:
                 print(f"--- Simulación finalizada el día {dia}: El virus se extinguió ---")
                 break
             dia += 1
+        self.resultados[5] = self.limites[self.virus.tipo_transmision]
+        self.resultados[6]=dia
         self.registrar_pacientes_hospitalizados()
+        return self.resultados
 
     def registrar_pacientes_hospitalizados(self):
         for p in self.poblacion:

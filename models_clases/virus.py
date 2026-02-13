@@ -12,6 +12,10 @@ class Virus():
             "Contacto Directo": 0.12, 
             "Fómites": 0.10
         }
-        
         self.probabilidad_contagio = probabilidades.get(tipo_transmision, 0.0)
 
+    def mostrar(self):
+        print(self.nombre)
+        print(self.tipo_transmision)
+        print(self.tasa_letalidad)
+        print(self.tiempo_recuperacion)

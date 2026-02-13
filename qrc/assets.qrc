@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="programa">
+    <file>add2.png</file>
+    <file>history2.png</file>
+    <file>play2.png</file>
+    <file>add.png</file>
+    <file>background_biohazard.png</file>
+    <file>background_biohazard_2.png</file>
+    <file>background_biohazard_logo.png</file>
+    <file>history.png</file>
+    <file>images.txt</file>
+    <file>nodo_background.png</file>
+    <file>play.png</file>
+  </qresource>
+</RCC>

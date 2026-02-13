@@ -20,9 +20,7 @@ class ColaHospital():
             paciente.en_hospital = True
             return paciente
         return None
-            
-    
-    
+
     def esta_vacia(self):
         return len(self.cola_pacientes) == 0
     
@@ -31,13 +29,13 @@ class ColaHospital():
     
     def tamano_cola(self):
         return len(self.cola_pacientes)
-
     
 class PilaHistorial():
     def __init__(self):
         self.historial_estados = []
 
     def apilar_estado(self, dia, poblacion, infectados, recuperados, fallecidos, tipo_transmision, area):
+      
         estado = {
             "dia": dia,
             "poblacion_total": poblacion,
@@ -51,21 +49,33 @@ class PilaHistorial():
         print(f"[DEBUG] Estado del día {dia} guardado en la pila")
 
     def deshacer_y_mostrar(self):
+
         if self.esta_vacia():
             print("(!) No hay estados anteriores para retroceder")
             return None
         
         estado_restaurado = self.historial_estados.pop()
+        
+      
+        
         self._imprimir_resumen(estado_restaurado)
+        
         return estado_restaurado
 
     def _imprimir_resumen(self, estado):
+    
         print("\n" + "="*50)
-        print(f"REBOBINANDO AL DÍA {estado['dia']}")
+        print(f"DÍA {estado['dia']}")
         print("="*50)
-        print(f"Infectados: {estado['infectados']} | Fallecidos: {estado['fallecidos']}")
+        print(f"Población Total: {estado['poblacion_total']}")
+        print(f"Tipo Transmisión: {estado['tipo_transmision']}")
+        print(f"n Área Geográfica: {estado['area']} km²")
+        print("-" * 20)
+        print(f"Infectados: {estado['infectados']}")
+        print(f"Fallecidos: {estado['fallecidos']}")
+        print(f" Recuperados: {estado['recuperados']}")
         print("="*50 + "\n")
-        
+
     def esta_vacia(self):
         return len(self.historial_estados) == 0
 
@@ -73,3 +83,6 @@ class PilaHistorial():
         if not self.esta_vacia():
             return self.historial_estados[-1]
         return None
+    
+    
+
