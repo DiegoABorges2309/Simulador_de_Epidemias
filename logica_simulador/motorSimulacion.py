@@ -1,8 +1,8 @@
 import random
-from models_clases.paciente import Paciente
-from models_clases.virus import Virus
-from models_clases.simulacion import Simulacion
-from logic_core.estructuras import ColaHospital
+from modelos.persona import Paciente
+from modelos.virus import Virus
+from modelos.simulacion import Simulacion
+from .estructuras import ColaHospital
 
 class MotorSimulacion:
     def __init__(self, db, virus_obj, simulacion_obj):

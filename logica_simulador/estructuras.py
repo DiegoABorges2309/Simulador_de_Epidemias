@@ -1,6 +1,4 @@
-
-from models_clases.paciente import Paciente
-
+from modelos.persona import Paciente
 
 class ColaHospital():
     def __init__(self):
@@ -48,33 +46,33 @@ class PilaHistorial():
         self.historial_estados.append(estado)
         print(f"[DEBUG] Estado del día {dia} guardado en la pila")
 
-    def deshacer_y_mostrar(self):
-
-        if self.esta_vacia():
-            print("(!) No hay estados anteriores para retroceder")
-            return None
-        
-        estado_restaurado = self.historial_estados.pop()
-        
-      
-        
-        self._imprimir_resumen(estado_restaurado)
-        
-        return estado_restaurado
-
-    def _imprimir_resumen(self, estado):
-    
-        print("\n" + "="*50)
-        print(f"DÍA {estado['dia']}")
-        print("="*50)
-        print(f"Población Total: {estado['poblacion_total']}")
-        print(f"Tipo Transmisión: {estado['tipo_transmision']}")
-        print(f"n Área Geográfica: {estado['area']} km²")
-        print("-" * 20)
-        print(f"Infectados: {estado['infectados']}")
-        print(f"Fallecidos: {estado['fallecidos']}")
-        print(f" Recuperados: {estado['recuperados']}")
-        print("="*50 + "\n")
+    # def deshacer_y_mostrar(self):
+    #
+    #     if self.esta_vacia():
+    #         print("(!) No hay estados anteriores para retroceder")
+    #         return None
+    #
+    #     estado_restaurado = self.historial_estados.pop()
+    #
+    #
+    #
+    #     self._imprimir_resumen(estado_restaurado)
+    #
+    #     return estado_restaurado
+    #
+    # def _imprimir_resumen(self, estado):
+    #
+    #     print("\n" + "="*50)
+    #     print(f"DÍA {estado['dia']}")
+    #     print("="*50)
+    #     print(f"Población Total: {estado['poblacion_total']}")
+    #     print(f"Tipo Transmisión: {estado['tipo_transmision']}")
+    #     print(f"n Área Geográfica: {estado['area']} km²")
+    #     print("-" * 20)
+    #     print(f"Infectados: {estado['infectados']}")
+    #     print(f"Fallecidos: {estado['fallecidos']}")
+    #     print(f" Recuperados: {estado['recuperados']}")
+    #     print("="*50 + "\n")
 
     def esta_vacia(self):
         return len(self.historial_estados) == 0
