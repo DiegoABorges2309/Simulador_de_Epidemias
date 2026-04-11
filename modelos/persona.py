@@ -1,36 +1,6 @@
 import random
 
 
-def definir_hobby(_es_personal_salud: bool) -> bool:
-    """
-    Función para determinar si una persona tiene el hobby
-    'Fiestero' o no
-    :param _es_personal_salud: es una variable booleana
-    porque si es de salud es menos probable que sea 'fiestero'.
-    Las personas tienen un 28% de ser fiesteras
-    :return: si es fiestero retorna 'True' o 'False' si no
-    """
-    posibilidad = 28
-    if _es_personal_salud:
-        posibilidad = 10
-    if random.randint(0, 100) < posibilidad:
-        return True
-    return False
-
-
-def definir_ocupacion() -> bool:
-    """
-    Función para determinar si una persona es del
-    sector salud. Este atributo influye en su
-    riesgo de ser contaminada. Las personas tienen
-    un 33% de ser trabajadores de salud.
-    :return: Si es personal salud retorna 'True' o 'False' si no
-    """
-    if random.randint(0, 100) < 33:
-        return True
-    return False
-
-
 class Persona:
     """
     Es la clase que se encargara de procesar/manejar
@@ -73,9 +43,50 @@ class Persona:
         self.dias_hospital = 0
         self.posicion_x = 0.0
         self.posicion_y = 0.0
-        self.es_personal_salud = definir_ocupacion()
-        self.es_fiestero = definir_hobby(self.es_personal_salud)
+        self.es_personal_salud = self.definir_ocupacion()
+        self.es_fiestero = self.definir_hobby(self.es_personal_salud)
 
-    # Getters:
+    """
+    *****************************************************************
+                                Getters
+    *****************************************************************
+    """
+
     def get_id_persona(self) -> int:
         return self.__id
+
+    """
+    *****************************************************************
+                                Métodos
+    *****************************************************************
+    """
+
+    @staticmethod
+    def definir_hobby(_es_personal_salud: bool) -> bool:
+        """
+        Función para determinar si una persona tiene el hobby
+        'Fiestero' o no
+        :param _es_personal_salud: es una variable booleana
+        porque si es de salud es menos probable que sea 'fiestero'.
+        Las personas tienen un 28% de ser fiesteras
+        :return: si es fiestero retorna 'True' o 'False' si no
+        """
+        posibilidad = 28
+        if _es_personal_salud:
+            posibilidad = 10
+        if random.randint(0, 100) < posibilidad:
+            return True
+        return False
+
+    @staticmethod
+    def definir_ocupacion() -> bool:
+        """
+        Función para determinar si una persona es del
+        sector salud. Este atributo influye en su
+        riesgo de ser contaminada. Las personas tienen
+        un 33% de ser trabajadores de salud.
+        :return: Si es personal salud retorna 'True' o 'False' si no
+        """
+        if random.randint(0, 100) < 33:
+            return True
+        return False
