@@ -15,24 +15,23 @@ class DatosSimulacion(ABC):
     """
 
     def __init__(
-        self, _tasa_picaduras: float, _tasa_transmision: float, _tasa_incubacion: float
+        self, tasa_picaduras: float, tasa_transmision: float, tasa_incubacion: float
     ):
         """
         Inicializa los datos necesarios para la simualcion
 
         Parameters
         ----------
-        _tasa_picaduras
+        tasa_picaduras
             Representa el promedio de picaduras que puede realizar un mosquito por dia.
-        _tasa_transmision
+        tasa_transmision
             Representa la tasa que tiene el dengue en infectar a un vector
             o persona despues de una picadura.
-        _tasa_incubacion
-            Representa el tiempo que tarda el dengue en ser infeccioso dentro
-            del huesped (humano o vector).
+        tasa_incubacion
+            Representa cuantos por dia pasan de expuesto a infectado.
         """
-        self.fuerza_infeccion = _tasa_picaduras * _tasa_transmision
-        self.tasa_incubacion = _tasa_incubacion
+        self.fuerza_infeccion = tasa_picaduras * tasa_transmision
+        self.tasa_incubacion = tasa_incubacion
 
 
 class ModeloInicial(ABC):
@@ -41,26 +40,28 @@ class ModeloInicial(ABC):
     establece variables que comparten entre si.
     """
 
-    def __init__(self, _n_poblacion: int, _n_infectados_inicio: int, _datos_simulacion):
+    def __init__(
+        self,
+        n_poblacion: float,
+        n_infectados_inicio: float,
+        datos_simulacion: DatosSimulacion,
+    ):
         """
         Inicializa los datos necesarios para el modelo SEIR-SEI
 
         Parameters
         ----------
-        _n_poblacion
-            Representa el numero inicial que se tomara para la simualacion
-            tanto para humano y vector.
-        _n_infectados_inicio
-            Representa el numero inicial de infectados que se tomara
-            para la simualcion tanto para humano y vector.
-        _datos_simulacion
-            Representa un objeto de la clase 'DatosSimulacion' el
-            cual se tomara para extraer los datos para las ecuaciones.
+        n_poblacion
+            Representa el número inicial que se tomará para la simulación.
+        n_infectados_inicio
+            Representa el número inicial de infectados que se tomará para la simulación.
+        datos_simulacion
+            Representa un objeto de la clase 'DatosSimulacion' con los datos para las ecuaciones.
         """
-        self.susceptibles = _n_poblacion - _n_infectados_inicio
+        self.susceptibles = n_poblacion - n_infectados_inicio
         self.expuestos = 0
-        self.infectados = _n_infectados_inicio
-        self.datos_simulacion = _datos_simulacion
+        self.infectados = n_infectados_inicio
+        self.datos_simulacion = datos_simulacion
 
     @abstractmethod
     def get_poblacion_total(self) -> float:
@@ -71,18 +72,18 @@ class ModeloInicial(ABC):
         pass
 
     @abstractmethod
-    def calcular_susceptibles(self, kwargs) -> float:
+    def calcular_susceptibles(
+        self, n_infectados_h: float, n_poblacion_h: float
+    ) -> float:
         """
-        Funcion abstracta del calculo de la ecuacion
-        de los susceptibles.
+        Función abstracta para el cálculo de susceptibles.
         """
         pass
 
     @abstractmethod
-    def calcular_expuestos(self, kwargs) -> float:
+    def calcular_expuestos(self, n_infectados_h: float, n_poblacion_h: float) -> float:
         """
-        Funcion abstracta del calculo de la ecuacion
-        de los expuestos.
+        Función abstracta para el cálculo de expuestos.
         """
         pass
 
@@ -92,4 +93,13 @@ class ModeloInicial(ABC):
         Funcion abstracta del calculo de la ecuacion
         de los infectados
         """
+        pass
+
+    @abstractmethod
+    def actualizar_variables(
+        self,
+        valore_nuevo_susceptibles: float,
+        valore_nuevo_expuestos: float,
+        valore_nuevo_infectados: float,
+    ):
         pass
