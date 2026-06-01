@@ -4,7 +4,7 @@ como tambien de su propia clase de datos
 de la simulacion.
 """
 
-from modelo_inicial import ModeloInicial, DatosSimulacion
+from .modelo_inicial import ModeloInicial, DatosSimulacion
 
 
 class DatosSimulacionVector(DatosSimulacion):

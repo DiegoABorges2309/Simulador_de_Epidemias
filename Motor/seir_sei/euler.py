@@ -3,8 +3,8 @@ Definicion del metodo de Euler para resolver,
 las ecuaciones diferenciales del metodo SEIR-SEI.
 """
 
-from seir import Seir
-from sei import Sei
+from .seir import Seir
+from .sei import Sei
 
 
 def diccionario_resultados_humano(
@@ -88,7 +88,7 @@ class Euler:
 
     def __init__(self, paso_tiempo: float, tiempo_final: float):
         """
-        Inicializador de la clase 'Eurler'
+        Inicializador de la clase 'Euler'
 
         Parameters
         ----------
@@ -109,7 +109,6 @@ class Euler:
         self.variables_v = []
 
     def calculo_euler(self, modelo_seir: Seir, modelo_sei: Sei):
-        print("hola")
         """
         Funcion que se encarga de poner el metodo de euler
         en marcha.
@@ -142,7 +141,7 @@ class Euler:
                 modelo_sei.infectados,
             )
         )
-        while int(round(self.dias_reales)) != int(round(self.tiempo_final)):
+        while self.dias_reales < self.tiempo_final:
             self.dias_reales += self.paso_tiempo
             calculo_nuevo_h = self.recalcular_metodo_seir(modelo_seir, modelo_sei)
             calculo_nuevo_v = self.recalcular_metodo_sei(modelo_sei, modelo_seir)
