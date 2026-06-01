@@ -1,3 +1,4 @@
+#seir.py
 """
 Definición del modelo SEIR para humanos y su clase de datos.
 """

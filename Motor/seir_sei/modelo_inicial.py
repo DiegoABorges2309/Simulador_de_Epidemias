@@ -1,3 +1,4 @@
+#modelo_inicial.py
 """
 Archivo inicial donde se encuentra la logica inicial
 del modelo SEIR-SEI que usamos, aqui se encuentran

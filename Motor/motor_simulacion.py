@@ -1,3 +1,4 @@
+#motor_simulacion.py
 from seir_sei.seir import Seir, DatosSimulacionHumanos
 from seir_sei.sei import Sei, DatosSimulacionVector
 from seir_sei.euler import Euler
@@ -26,8 +27,9 @@ class Motor:
         self.lista_de_dias = []
 
     def iniciar_simulacion(self):
-        for index in range(120):
+        for index in range(365):
             self.euler.calculo_euler(self.modelo_seir, self.modelo_sei)
+            self.euler.dias_reales = 0.0
             dia = {
                 "dia": index + 1,
                 "humano": self.euler.variables_h[-1],

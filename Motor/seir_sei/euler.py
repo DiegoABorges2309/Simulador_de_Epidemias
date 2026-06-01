@@ -1,3 +1,4 @@
+# euler.py
 """
 Definicion del metodo de Euler para resolver,
 las ecuaciones diferenciales del metodo SEIR-SEI.
@@ -124,6 +125,9 @@ class Euler:
             las ecuaciones de la clase SEI como a sus
             atributos.
         """
+        self.variables_h.clear()
+        self.variables_v.clear()
+        pasos = int(self.tiempo_final / self.paso_tiempo)
         self.agregar_variables_h(
             diccionario_resultados_humano(
                 self.dias_reales,
@@ -141,7 +145,7 @@ class Euler:
                 modelo_sei.infectados,
             )
         )
-        while self.dias_reales < self.tiempo_final:
+        for _ in range(pasos):
             self.dias_reales += self.paso_tiempo
             calculo_nuevo_h = self.recalcular_metodo_seir(modelo_seir, modelo_sei)
             calculo_nuevo_v = self.recalcular_metodo_sei(modelo_sei, modelo_seir)

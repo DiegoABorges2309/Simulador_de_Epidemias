@@ -142,7 +142,8 @@ class Euler:
                 modelo_sei.infectados,
             )
         )
-        while int(round(self.dias_reales)) != int(round(self.tiempo_final)):
+        while self.dias_reales < self.tiempo_final:
+            print("hola")
             self.dias_reales += self.paso_tiempo
             calculo_nuevo_h = self.recalcular_metodo_seir(modelo_seir, modelo_sei)
             calculo_nuevo_v = self.recalcular_metodo_sei(modelo_sei, modelo_seir)
