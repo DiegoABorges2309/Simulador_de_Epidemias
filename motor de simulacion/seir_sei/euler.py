@@ -1,4 +1,3 @@
-# euler.py
 """
 Definicion del metodo de Euler para resolver,
 las ecuaciones diferenciales del metodo SEIR-SEI.
@@ -14,6 +13,7 @@ def diccionario_resultados_humano(
     expuestos: float,
     infectados: float,
     recuperados: float,
+    muertos: float,
 ) -> dict[str, float]:
     """
     Una funcion independiente que se encarga
@@ -43,6 +43,7 @@ def diccionario_resultados_humano(
         "expuestos": expuestos,
         "infectados": infectados,
         "recuperados": recuperados,
+        "muertos": muertos,
     }
 
 
@@ -135,6 +136,7 @@ class Euler:
                 modelo_seir.expuestos,
                 modelo_seir.infectados,
                 modelo_seir.recuperados,
+                modelo_seir.muertos,
             )
         )
         self.agregar_variables_v(
@@ -281,6 +283,33 @@ class Euler:
         recuperados = self.variables_h[-1]["recuperados"]
         return recuperados + self.paso_tiempo * modelo_seir.calcular_recuperados()
 
+    def recalcular_muertos_h(self, modelo_seir: Seir) -> float:
+        """
+        Funcion que se encarga de recalcular la
+        ecuacion de recuperados provenientes de la
+        clase 'Seir' con nuevos valores.
+
+        Parameters
+        ----------
+        modelo_seir
+            Variable de tipo 'Seir' la cual dara acceso a
+            las ecuaciones de la clase SEIR como a sus
+            atributos.
+        modelo_sei
+            Variable de tipo 'Sei' la cual dara acceso a
+            las ecuaciones de la clase SEI como a sus
+            atributos.
+
+        Returns
+        -------
+            retorna el resultado del metodo de euler al
+            sumar la ultima cantidad de recuperados por el paso
+            de tiempo multiplicado por los recuperados, calculados
+            con nuevos datos.
+        """
+        muertos = self.variables_h[-1]["muertos"]
+        return muertos + self.paso_tiempo * modelo_seir.calcular_muertes()
+
     def recalcular_metodo_seir(
         self, modelo_seir: Seir, modelo_sei: Sei
     ) -> dict[str, float]:
@@ -311,6 +340,7 @@ class Euler:
         euler_expuestos = self.recalcular_expuestos_h(modelo_seir, modelo_sei)
         euler_infectados = self.recalcular_infectados_h(modelo_seir)
         euler_recuperados = self.recalcular_recuperados_h(modelo_seir)
+        euler_muertos = self.recalcular_muertos_h(modelo_seir)
 
         return diccionario_resultados_humano(
             self.dias_reales,
@@ -318,6 +348,7 @@ class Euler:
             euler_expuestos,
             euler_infectados,
             euler_recuperados,
+            euler_muertos,
         )
 
     def actualizar_metodo_seir(self, modelo_seir: Seir):
@@ -339,6 +370,7 @@ class Euler:
             self.variables_h[-1]["expuestos"],
             self.variables_h[-1]["infectados"],
             self.variables_h[-1]["recuperados"],
+            self.variables_h[-1]["muertos"],
         )
 
     # ====================================

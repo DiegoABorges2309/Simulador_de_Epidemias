@@ -1,4 +1,3 @@
-#sei.py
 """
 Definicion del modelo SEI para vectores
 como tambien de su propia clase de datos
@@ -24,6 +23,7 @@ class DatosSimulacionVector(DatosSimulacion):
         tasa_incubacion: float,
         tasa_nacimiento_vector: float,
         tasa_muerte_vector: float,
+        tasa_bombeo_agua: float = 1.0,
     ):
         """
         Inicializa los datos necesarios del modelo SEI para la simualcion
@@ -46,9 +46,9 @@ class DatosSimulacionVector(DatosSimulacion):
             respecto a la cantidad de poblacion de este mismo.
         """
         super().__init__(tasa_picaduras, tasa_transmision, tasa_incubacion)
+        self.tasa_bombeo_agua = tasa_bombeo_agua
         self.tasa_nacimiento = tasa_nacimiento_vector
         self.tasa_muerte = tasa_muerte_vector
-        
 
 
 class Sei(ModeloInicial):
@@ -93,7 +93,9 @@ class Sei(ModeloInicial):
             Retorna la suma de susceptibles, expuestos y infectados
             lo cual representa la poblacion total del vector.
         """
-        return self.susceptibles + self.expuestos + self.infectados # pyright: ignore[reportOperatorIssue]
+        return (
+            self.susceptibles + self.expuestos + self.infectados
+        )  # pyright: ignore[reportOperatorIssue]
 
     def calcular_susceptibles(
         self, n_infectados_h: float, n_poblacion_h: float
@@ -116,12 +118,15 @@ class Sei(ModeloInicial):
             return 0.0
 
         n_nacimientos = (
-            self.datos_simulacion.tasa_nacimiento * self.get_poblacion_total()
+            self.datos_simulacion.tasa_nacimiento
+            * self.datos_simulacion.tasa_bombeo_agua
+            * self.get_poblacion_total()
         )
         return (
             n_nacimientos
             - self.datos_simulacion.fuerza_infeccion
-            * (n_infectados_h / n_poblacion_h)
+            * n_infectados_h
+            / n_poblacion_h
             * self.susceptibles
             - self.datos_simulacion.tasa_muerte * self.susceptibles
         )
@@ -171,6 +176,24 @@ class Sei(ModeloInicial):
         valor_nuevo_expuestos: float,
         valor_nuevo_infectados: float,
     ):
+        """
+        Funcion que se encarga de actualizar
+        las variables de la clase 'Sei' con
+        nuevos valores en cada iteracion.
+
+        Parameters
+        ----------
+        valor_nuevo_susceptibles
+            El nuevo valor de los susceptibles vector.
+        valor_nuevo_expuestos
+            El nuevo valor de los expuestos vector.
+        valor_nuevo_infectados
+            El nuevo valor de los infectados vector.
+        valor_nuevo_recuperados
+            El nuevo valor de los recuperados vector.
+        valor_nuevo_muertes
+            El nuevo valor de los muertos vector.
+        """
         self.susceptibles = valor_nuevo_susceptibles
         self.expuestos = valor_nuevo_expuestos
         self.infectados = valor_nuevo_infectados
