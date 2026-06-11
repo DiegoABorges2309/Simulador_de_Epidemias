@@ -212,7 +212,7 @@ class DashboardPrincipal(QMainWindow):
 
 
 if __name__ == "__main__":
-    iniciar_servidor()
+    iniciar_servidor()  # Iniciar el servidor local para servir los archivos necesarios
     app = QApplication(sys.argv)
     dashboard = DashboardPrincipal()
     dashboard.show()

@@ -13,7 +13,7 @@ def iniciar_servidor():
 
     os.chdir(carpeta_archivos)
 
-    servidor = ThreadingHTTPServer(("0.0.0.0", 2000), SimpleHTTPRequestHandler)
+    servidor = ThreadingHTTPServer(("0.0.0.0", 4000), SimpleHTTPRequestHandler)
 
     hilo = threading.Thread(target=servidor.serve_forever, daemon=True)
     hilo.start()

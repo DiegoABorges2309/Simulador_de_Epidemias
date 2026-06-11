@@ -24,14 +24,14 @@ class MapaCanvas(QWebEngineView):
 
     def __init__(self):
         super().__init__()
-        self.setUrl(QUrl("http://localhost:2000"))
+        self.setUrl(QUrl("http://localhost:4000"))
 
 
 class MiniGraficaCanvas(FigureCanvas):
     """Lienzo individual de alta eficiencia para las 7 minigráficas de los lados."""
 
     def __init__(self, titulo, color_linea, color_relleno):
-        self.figura = Figure(figsize=(2.5, 3.75), facecolor="#111519")
+        self.figura = Figure(figsize=(2.5, 2.0), facecolor="#111519")
         self.ax = self.figura.add_subplot(111, facecolor="#111519")
         super().__init__(self.figura)
 
